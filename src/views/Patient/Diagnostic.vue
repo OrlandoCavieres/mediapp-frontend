@@ -19,7 +19,7 @@ const axiosHeaders = {
   'Authorization': `Bearer ${userInfo.user.token}`
 }
 
-if (userInfo.user.professional !== null) {
+if (userInfo.user.professional) {
   diagStep.setStep(2)
   router.replace({ name: 'associationResult' })
 }
@@ -30,7 +30,7 @@ const finalScore = computed(() => {
 
 const isAllAnswered = computed(() => {
   const filterZeros = questionPoints.value.filter(value => value !== 0)
-  return filterZeros.length === 4
+  return filterZeros.length === questions.value.length
 })
 
 function getQuestions() {

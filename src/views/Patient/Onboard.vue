@@ -48,7 +48,7 @@ export default {
               processState.setStep(1)
               userInfo.updateUserField('name', this.name)
               userInfo.updateUserField('city', this.city)
-              router.replace({ name: 'diagnostic' })
+              router.push({ name: 'diagnostic' })
             }
             else {
               this.errors = resp.data.errors
