@@ -3,6 +3,7 @@ import router from "@/router"
 import axios from "axios"
 import { useUserInformationStore } from "@/stores/userInformation";
 import { LoginSuccessResponse } from "@/types/BackendResponseTypes";
+import { BACKEND_URL } from "@/constants";
 
 export default {
   data() {
@@ -16,7 +17,7 @@ export default {
     async sendRegister() {
       const userInfo = useUserInformationStore()
 
-      axios.post('http://localhost:9000/api/auth/register', {
+      axios.post(`${BACKEND_URL}/api/auth/register`, {
         email: this.email,
         password: this.password
       })

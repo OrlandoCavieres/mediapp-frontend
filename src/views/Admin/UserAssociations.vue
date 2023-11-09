@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue"
 import type { User } from "@/types/Objects"
-import { useUserInformationStore } from "@/stores/userInformation";
-import axios from "axios";
-import type { ListResponse } from "@/types/BackendResponseTypes";
+import { useUserInformationStore } from "@/stores/userInformation"
+import axios from "axios"
+import type { ListResponse } from "@/types/BackendResponseTypes"
+import { BACKEND_URL } from "@/constants"
 
 const userInfo = useUserInformationStore()
 
@@ -15,7 +16,7 @@ const axiosHeaders = {
 }
 
 function getAssociationResults() {
-  axios.get('http://localhost:9000/api/patient-assigns', { headers: axiosHeaders })
+  axios.get(`${BACKEND_URL}/api/patient-assigns`, { headers: axiosHeaders })
       .then(resp => {
         const r: ListResponse = resp.data
 

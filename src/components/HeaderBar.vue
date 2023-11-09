@@ -32,22 +32,22 @@ export default {
 <template>
   <div class="mainContainer">
     <div v-if="userGroup === 'Administrador'" class="leftSideContainer">
-      <div v-bind:class="this.$route.name === 'adminWelcome' ? 'headerButtonActive' : 'headerButton'"
+      <div v-bind:class="$route.name === 'adminWelcome' ? 'headerButtonActive' : 'headerButton'"
            @click="goTo('adminWelcome')">
         Inicio
       </div>
 
-      <div v-bind:class="this.$route.name === 'questions' ? 'headerButtonActive' : 'headerButton'"
+      <div v-bind:class="$route.name === 'questions' ? 'headerButtonActive' : 'headerButton'"
            @click="goTo('questions')">
         Preguntas
       </div>
 
-      <div v-bind:class="this.$route.name === 'professionals' ? 'headerButtonActive' : 'headerButton'"
+      <div v-bind:class="$route.name === 'professionals' ? 'headerButtonActive' : 'headerButton'"
            @click="goTo('professionals')">
         Profesionales
       </div>
 
-      <div v-bind:class="this.$route.name === 'associations' ? 'headerButtonActive' : 'headerButton'"
+      <div v-bind:class="$route.name === 'associations' ? 'headerButtonActive' : 'headerButton'"
            @click="goTo('associations')">
         Resultados de Diagnóstico
       </div>

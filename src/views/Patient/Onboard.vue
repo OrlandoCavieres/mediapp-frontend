@@ -3,6 +3,7 @@ import { useUserInformationStore } from "@/stores/userInformation"
 import { usePatientDiagStateStore } from "@/stores/patientDiagState"
 import router from "@/router"
 import axios from "axios"
+import { BACKEND_URL } from "@/constants"
 
 export default {
   beforeCreate() {
@@ -41,7 +42,7 @@ export default {
         'Authorization': `Bearer ${userInfo.user.token}`
       }
 
-      axios.post('http://localhost:9000/api/auth/patient/onboard', toSend, { headers })
+      axios.post(`${BACKEND_URL}/api/auth/patient/onboard`, toSend, { headers })
           .then(resp => {
             if (resp.data.success) {
               processState.setStep(1)

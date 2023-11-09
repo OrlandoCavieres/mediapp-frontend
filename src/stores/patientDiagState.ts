@@ -5,7 +5,7 @@ import { defineStore } from 'pinia'
 export const usePatientDiagStateStore = defineStore('patiendDiagState', () => {
     const step = ref<number>(0)
 
-    function setStep(newValue) {
+    function setStep(newValue: number) {
       step.value = newValue
     }
 

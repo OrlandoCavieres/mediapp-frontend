@@ -5,6 +5,7 @@ import type { ListResponse } from "@/types/BackendResponseTypes"
 import { ref } from "vue"
 import type { Question } from "@/types/Objects"
 import router from "@/router"
+import { BACKEND_URL } from "@/constants"
 
 const userInfo = useUserInformationStore()
 
@@ -16,7 +17,7 @@ const axiosHeaders = {
 const questions = ref<Question[]>([])
 
 function getQuestions() {
-  axios.get('http://localhost:9000/api/questions', { headers: axiosHeaders })
+  axios.get(`${BACKEND_URL}/api/questions`, { headers: axiosHeaders })
       .then(resp => {
         const r: ListResponse = resp.data
 
@@ -35,7 +36,7 @@ function goEditQuestion(idToEdit) {
 }
 
 function deleteQuestion(idToDelete) {
-  axios.delete(`http://localhost:9000/api/questions/${idToDelete}`, { headers: axiosHeaders })
+  axios.delete(`${BACKEND_URL}/api/questions/${idToDelete}`, { headers: axiosHeaders })
       .then(resp => {
         if (resp.data.success) {
           getQuestions()

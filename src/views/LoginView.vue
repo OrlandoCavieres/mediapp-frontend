@@ -3,6 +3,7 @@ import router from "@/router"
 import { useUserInformationStore } from "@/stores/userInformation"
 import axios from "axios"
 import type { LoginSuccessResponse } from "@/types/BackendResponseTypes"
+import { BACKEND_URL } from "@/constants"
 
 
 export default {
@@ -17,7 +18,7 @@ export default {
     sendLogin() {
       const userInfo = useUserInformationStore()
 
-      axios.post('http://localhost:9000/api/auth/login', {
+      axios.post(`${BACKEND_URL}/api/auth/login`, {
         email: this.email,
         password: this.password
       })

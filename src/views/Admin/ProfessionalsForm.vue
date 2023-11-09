@@ -5,6 +5,7 @@ import { computed, ref } from "vue"
 import axios from "axios"
 import { ElementResponse } from "@/types/BackendResponseTypes"
 import router from "@/router";
+import { BACKEND_URL } from "@/constants"
 
 
 const userInfo = useUserInformationStore()
@@ -36,7 +37,7 @@ if (isEdit.value) {
 }
 
 function getProfessional() {
-  axios.get(`http://localhost:9000/api/professionals/${route.params.id}`, { headers: axiosHeaders })
+  axios.get(`${BACKEND_URL}/api/professionals/${route.params.id}`, { headers: axiosHeaders })
       .then(resp => {
         const r: ElementResponse = resp.data
 
@@ -53,7 +54,7 @@ function sendCreateForm() {
     specialty: specialty.value
   }
 
-  axios.post('http://localhost:9000/api/professionals', sendData, { headers: axiosHeaders })
+  axios.post(`${BACKEND_URL}/api/professionals`, sendData, { headers: axiosHeaders })
       .then(resp => {
         if (resp.data.success) {
           router.push({ name: 'professionals' })
@@ -70,7 +71,7 @@ function sendUpdateForm() {
     specialty: specialty.value
   }
 
-  axios.put(`http://localhost:9000/api/professionals/${route.params.id}`, sendData, { headers: axiosHeaders })
+  axios.put(`${BACKEND_URL}/api/professionals/${route.params.id}`, sendData, { headers: axiosHeaders })
       .then(resp => {
         if (resp.data.success) {
           router.push({ name: 'professionals' })

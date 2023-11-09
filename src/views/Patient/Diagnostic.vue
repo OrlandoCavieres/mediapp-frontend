@@ -4,8 +4,9 @@ import { usePatientDiagStateStore } from "@/stores/patientDiagState"
 import router from "@/router"
 import axios from "axios";
 import type { AssignProfResponse, ListResponse } from "@/types/BackendResponseTypes"
-import type { Question, QuestionAlternative } from "@/types/Objects"
+import type { Question } from "@/types/Objects"
 import { computed, ref } from "vue"
+import { BACKEND_URL } from "@/constants"
 
 const questions = ref<Question[]>([])
 const questionPoints = ref<number[]>([])
@@ -34,7 +35,7 @@ const isAllAnswered = computed(() => {
 
 function getQuestions() {
 
-  axios.get('http://localhost:9000/api/questions', { headers: axiosHeaders })
+  axios.get(`${BACKEND_URL}/api/questions`, { headers: axiosHeaders })
       .then(resp => {
         const r: ListResponse = resp.data
 
@@ -48,7 +49,7 @@ function getQuestions() {
 function sendScoreResult() {
   console.log(finalScore.value)
 
-  axios.post('http://localhost:9000/api/result-diagnostic', { total: finalScore.value }, { headers: axiosHeaders })
+  axios.post(`${BACKEND_URL}/api/result-diagnostic`, { total: finalScore.value }, { headers: axiosHeaders })
       .then(resp => {
         const r: AssignProfResponse = resp.data
 

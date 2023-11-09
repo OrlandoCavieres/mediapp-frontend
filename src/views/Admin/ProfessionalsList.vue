@@ -5,6 +5,7 @@ import type { ListResponse } from "@/types/BackendResponseTypes"
 import { ref } from "vue"
 import type { Professional } from "@/types/Objects"
 import router from "@/router";
+import { BACKEND_URL } from "@/constants";
 
 const userInfo = useUserInformationStore()
 
@@ -16,7 +17,7 @@ const axiosHeaders = {
 const professionals = ref<Professional[]>([])
 
 function getProfessionals() {
-  axios.get('http://localhost:9000/api/professionals', { headers: axiosHeaders })
+  axios.get(`${BACKEND_URL}/api/professionals`, { headers: axiosHeaders })
       .then(resp => {
         const r: ListResponse = resp.data
 
@@ -37,7 +38,7 @@ function goEditProf(idToEdit) {
 function deleteProf(idToDelete) {
   console.log(`eliminar id ${idToDelete}`)
 
-  axios.delete(`http://localhost:9000/api/professionals/${idToDelete}`, { headers: axiosHeaders })
+  axios.delete(`${BACKEND_URL}/api/professionals/${idToDelete}`, { headers: axiosHeaders })
       .then(resp => {
         if (resp.data.success) {
           getProfessionals()
